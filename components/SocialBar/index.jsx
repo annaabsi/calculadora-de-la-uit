@@ -9,8 +9,8 @@ const SocialBar = () => {
     <>
       <div className='social'>
         <div className='wrapperF'>
-          <FacebookShareButton url='https://especiales.larepublica.pe/gratificacion-de-2022-peru-quienes-seran-beneficiarios-cuanto-es-cuando-pagan-y-todo-lo-que-debes-saber' 
-            quote="Calculadora de las gratificaciones 2022 | LR Especiales"
+          <FacebookShareButton url='https://especiales.larepublica.pe/calculadora-de-uit-como-saber-cuanto-tengo-que-pagar-peru' 
+            quote="Calculadora de la UIT 2023 | LR Especiales"
           >
             <ContentIconF>
               <FontAwesomeIcon icon={faFacebookF}/>
@@ -19,8 +19,8 @@ const SocialBar = () => {
         </div>
 
         <div>
-          <TwitterShareButton url='https://especiales.larepublica.pe/gratificacion-de-2022-peru-quienes-seran-beneficiarios-cuanto-es-cuando-pagan-y-todo-lo-que-debes-saber' 
-            title="Calculadora de las gratificaciones 2022 | LR Especiales"
+          <TwitterShareButton url='https://especiales.larepublica.pe/calculadora-de-uit-como-saber-cuanto-tengo-que-pagar-peru' 
+            title="Calculadora de la UIT 2023 | LR Especiales"
           >
             <ContentIconT>
               <FontAwesomeIcon icon={faTwitter}/>
@@ -29,8 +29,8 @@ const SocialBar = () => {
         </div>
 
         <div>
-          <WhatsappShareButton url='https://especiales.larepublica.pe/gratificacion-de-2022-peru-quienes-seran-beneficiarios-cuanto-es-cuando-pagan-y-todo-lo-que-debes-saber' 
-            title="Calculadora de las gratificaciones 2022 | LR Especiales"
+          <WhatsappShareButton url='https://especiales.larepublica.pe/calculadora-de-uit-como-saber-cuanto-tengo-que-pagar-peru' 
+            title="Calculadora de la UIT 2023 | LR Especiales"
           >
             <ContentIconW>
               <FontAwesomeIcon icon={faWhatsapp}/>

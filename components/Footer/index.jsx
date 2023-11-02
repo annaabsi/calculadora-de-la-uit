@@ -5,15 +5,15 @@ import styled from 'styled-components'
 const Footer = () => {
   return(
     <Content>
-      <Wrapper>
+      {/* <Wrapper>
         <Tip>Texto:</Tip><Text>Carlos Estacio Olivares y</Text>
       </Wrapper>
         <Text>Milagros Requena Calderón</Text>
       <Wrapper>
         <Tip>Diseño:</Tip><Text>Fabrizio Oviedo</Text>
-      </Wrapper>
+      </Wrapper> */}
       <Wrapper>
-        <Tip>Desarrollo Web:</Tip><Text>Renzo Neira</Text>
+        <Tip>Desarrollo Web:</Tip><Text>Anna Absi</Text>
       </Wrapper>
       <br></br>
       <Text>© Grupo La República</Text>

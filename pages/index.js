@@ -18,6 +18,27 @@ const Home = () => {
   const [remuComputable, setRemuComputable] = useState(null)
   const [diffGrati, setDiffGrati] = useState(null)
   const [ctsFinally, setCtsFinally] = useState(null)
+
+  const [ano, setAno] = useState(2023)
+  const [cantidad, setCantidad] = useState(1)
+
+  const uitData = {
+    2012: 3650,
+    2013: 3700,
+    2014: 3800,
+    2015: 3850,
+    2016: 3950,
+    2017: 4050,
+    2018: 4150,
+    2019: 4200,
+    2020: 4300,
+    2021: 4400,
+    2022: 4600,
+    2023: 4950,
+  };
+
+  const valor = "S/ " + uitData[ano]
+  const total = "S/ " + (uitData[ano] * cantidad).toFixed(2)
   
   const optionsFam = [
     {
@@ -32,7 +53,7 @@ const Home = () => {
 
   const handleInput = (e) => {
     const { value, validity: { valid } } = e.target;
-    setSueldo(valid ? value : sueldo)
+    setCantidad(valid ? value : sueldo)
   }
 
   const handleComboFam = (e) => {
@@ -45,6 +66,10 @@ const Home = () => {
     setFecha(formatDate)
   }
 
+  const handleAno = (e) => {
+    let ano = e.target.value
+    setAno(ano)
+  }
   useEffect (() => {
     setDiffMeses(moment("2022-11-01").diff(fecha, "month"))
 
@@ -135,113 +160,111 @@ const Home = () => {
         }
       }
     }
-  }, [fecha, sueldo, diffMeses, bono, resultSB, fam, diffGrati, valueBonoFam, remuComputable, ctsFinally])
+  }, [ano, valor, cantidad, total])
 
   return (
     <Layout>
-      {/* <TitlePrincipal>
-        CALCULADORA DE LA CTS: ¿cómo saber cuánto me corresponde?
-      </TitlePrincipal> */}
-      {/* <PBajadas>
-        El 15 de julio es la fecha límite para que las empresas privadas abonen a sus empleados la 
-        gratificación correspondiente a las Fiestas Patrias. Este derecho responde a la Ley N°27735, 
-        y se aplica también en Navidad. Calcula aquí a cuánto asciende tu pago.
+      <TitlePrincipal>
+        Calculadora de UIT: ¿cómo saber cuánto tengo que pagar?
+      </TitlePrincipal>
+      <PBajadas>
+        La unidad impositiva tributaria (UIT), que varía todos los años, se utiliza para calcular impuestos, infracciones, multas y otros aspectos tributarios. A veces, estos montos se pueden expresar en cantidades o en porcentajes. Por eso, La República te ofrece una alternativa para calcular este importe durante el 2023.
       </PBajadas>
       <WrapperSubTitle>
         <SubTitles>
-          ¿Qué es la gratificación?
+        ¿Qué es la UIT?
         </SubTitles>
       </WrapperSubTitle>
       <PBajadas>
-        La gratificación es una remuneración adicional que percibe el trabajador, 
-        cuyo monto dependerá de los días computables que laboró en una misma compañía. 
-        Para la ocasión de julio se contabiliza los días entre el 1 de enero y el 30 de junio.
-        <br></br><br></br>
-        Se paga de forma bruta, es decir, no está afectada por los descuentos de ley que sí se 
-        aplican al salario mensual (tales como pago al sistema de pensiones o seguros); por el contrario, 
-        la gratificación goza de un adicional del 9% por concepto de EsSalud o 6.75% de EPS.
-        <br></br><br></br>
-        Solo estará afectada por el descuento de quinta categoría si es que el trabajador durante 
-        el año supera las 7 UIT en ingresos, conforme a lo establecido en el artículo 34 de la Ley del 
-        impuesto a la renta. */}
-        {/* <br></br><br></br>
-        Es un monto equivalente al último salario mensual que percibió el trabajador. Se paga de forma bruta, 
-        es decir, no está afectada por los descuentos de ley que sí se aplican a la remuneración 
-        (tales como pago al sistema de pensiones o seguros); por el contrario, goza de un adicional del 9% 
-        por concepto de EsSalud o 6.75% de EPS.
-        <br></br><br></br>
-        Solo estará afectada por el descuento de quinta categoría si es que el trabajador durante el año supera 
-        las 7 UIT en ingresos, conforme a lo establecido en el artículo 34 de la Ley del impuesto a la renta. */}
-      {/* </PBajadas>
-      <WrapperSubTitle>
-        <SubTitles>
-          ¿Quiénes reciben este beneficio?
-        </SubTitles>
-      </WrapperSubTitle>
-      <PBajadas>
-        Tal como señala el artículo 1 de la Ley 27735 (denominada “Ley que regula el otorgamiento de las gratificaciones 
-        para los trabajadores del régimen de la actividad privada por Fiestas Patrias y Navidad”), tienen derecho todos 
-        aquellos trabajadores que están sujetos al régimen de la actividad privada, sea cual fuere la modalidad del 
-        contrato de trabajo y el tiempo de prestación de servicios del trabajador.
-        <br></br><br></br>
-        Sin embargo, hay detalles a tener en cuenta. En el caso de las pequeñas empresas, y de acuerdo al Decreto Supremo 
-        013-2013-PRODUCE, los empleados tendrán derecho a media gratificación en julio y media gratificación en diciembre.
-        <br></br><br></br>
-        Por otro lado, la Ley 31110 permite que los trabajadores del régimen agrario también accedan a este beneficio. 
-        Según el artículo 3 numeral d, el trabajador puede elegir recibir los conceptos de CTS y gratificaciones en los 
-        plazos que la ley establece, sin que entren a ser prorrateados en la remuneración diaria.
-        <br></br><br></br>
-        Finalmente, la Ley 31047 otorga el beneficio a los trabajadores del hogar, cuya gratificación será equivalente al 
-        sueldo que se recibe.
+      Por sus siglas, significa unidad impositiva tributaria y es el valor en soles que
+establece el Estado peruano, a través del Ministerio de Economía y Finanzas,
+para determinar impuestos, infracciones, multas y otros asuntos tributarios. 
       </PBajadas>
       <WrapperSubTitle>
         <SubTitles>
-          ¿Cuál es la diferencia entre gratificación y aguinaldo?
+        ¿Para qué sirve la UIT?
         </SubTitles>
       </WrapperSubTitle>
       <PBajadas>
-        La gratificación corresponde únicamente al sector privado y se calcula en base a lo percibido como salario en el 
-        último mes. Mientras, el aguinaldo es un pago de s/ 300 que se hace a los trabajadores del sector público dos veces 
-        al año.
+      La UIT tiene un papel fundamental en el ámbito tributario, ya que su valor se utiliza como punto de referencia en la elaboración de normas y reglamentos
+para determinar montos de impuestos, sanciones, multas y otras obligaciones
+fiscales. Además, la unidad impositiva tributaria sirve para establecer un rango
+de ingresos que una empresa debe tener para posicionarse en una escala como, por ejemplo, una PYME o MYPE.
       </PBajadas>
       <WrapperSubTitle>
         <SubTitles>
-          ¿Cómo calcular la gratificación?
+        ¿Cuánto es el valor de la UIT 2023?
         </SubTitles>
       </WrapperSubTitle>
       <PBajadas>
-        El cálculo del monto final se debe hacer usando los siguientes criterios:
+      De acuerdo con el Decreto Supremo 309-2022-EF, el valor de la UIT para este
+2023 es de S/4.950, es decir, S/350 más que el 2022 y un aumento de S/1.300 si se considera desde el 2012.
+      </PBajadas>
+      <WrapperSubTitle>
+        <SubTitles>
+        ¿Por qué cambia la UIT?
+        </SubTitles>
+      </WrapperSubTitle>
+      <PBajadas>
+      La razón por la cual cada año vemos un aumento de la UIT se debe a una
+diversidad de factores macroeconómicos, pero, sobre todo, por la inflación, la cual cerró el año anterior en un poco más del 8%, con lo que se determina una
+variación en el índice de precios del consumidor. 
+      </PBajadas>
+      <WrapperSubTitle>
+        <SubTitles>
+        ¿Cómo cambió el valor de la UIT en los últimos años?
+        </SubTitles>
+      </WrapperSubTitle>
+      <PBajadas>
+      El valor de la unidad impositiva tributaria ha aumentado cada año, a tal punto
+que, del 2012 al 2023, el monto se ha incrementado en S/1.300. A continuación,
+revisa la UIT en los últimos años:
         <br></br>
       </PBajadas>
       <CaracterSpecial>
-        SUELDO + ASIGNACIÓN FAMILIAR (si es que la tuviese) + BONO (9% DE ESSALUD; 6.75%EPS)
+      2012: S/3.650<br></br>
+      2013: S/3.700<br></br>
+      2014: S/3.800<br></br>
+      2015: S/3.850<br></br>
+      2016: S/3.950<br></br>
+      2017: S/4.050<br></br>
+      2018: S/4.150<br></br>
+      2019: S/4.200<br></br>
+      2020: S/4.300<br></br>
+      2021: S/4.400<br></br>
+      2022: S/4.600<br></br>
+      2023: S/4.950
       </CaracterSpecial>
-        <br></br> */}
+        <br></br>
       <ContainerTitle>
         <Title>
-          CALCULADORA DE LA CTS
+          CALCULADORA DE LA UIT
         </Title>
       </ContainerTitle>
       <ContainerBody>
         <LineDate
-          type="date"
-          title="Fecha de Ingreso"
-          onChange={(e) => hendleFechaIngreso(e)}
+          type="number"
+          title="Año"
+          onChange={(e) => handleAno(e)}
+          min="2012"
+          max="2023"
+          step="1"
+          value={ano}
         />
         <LineDate
           type="text"
-          title="Sueldo Bruto"
-          placeholder="S/. 0.00"
-          name="SueldoBruto"
-          value={sueldo}
-          onInput={(e) => handleInput(e)}
-          pattern="[0-9]*"
+          title="Valor de la UIT"
+          disabled="true"
+          value={valor}
         />
         <LineDate
           type="number"
-          title="Tiempo laboral computable (meses)"
-          disabled="true"
-          value={diffMeses > 6 ? 6 : diffMeses}
+          title="Cantidad de UITs"
+          min="0"
+          step="any"
+          name="SueldoBruto"
+          value={cantidad}
+          onInput={(e) => handleInput(e)}
         />
         {/* <BonoComboBox
           placeholder="Selecciona uno"
@@ -249,28 +272,42 @@ const Home = () => {
           options={optionsBono}
           onChange={(e) => handleComboBono(e)}
         /> */}
-        <FamComboBox
+        {/* <FamComboBox
           options={optionsFam}
           placeholder="Selecciona uno"
           title="Con hijo(s) (Bonificación familiar)"
           onChange={(e) => handleComboFam(e)}
-        />
+        /> */}
         <Line/>
         <LineDate
-          type="number"
-          title="Total a recibir"
+          type="text"
+          title="Monto total"
           disabled="true"
-          value={ctsFinally > 0 ? ctsFinally?.toFixed(2) : ctsFinally?.toFixed(2)}
+          value={total}
         />
         <Footer/>
       </ContainerBody>
-      <MessageWarning>
+      {/* <MessageWarning>
         El cálculo realizado es referencial. Los montos podrían variar en función al caso concreto 
         (por ejemplo para el caso de pequeñas y medianas empresas, en que se recibe un monto menor) 
         y se calculan en base a la información ingresada por el usuario. Sobre el monto calculado pueden 
         existir descuentos como el impuesto a la renta, deudas por pensión de alimentos, deudas con el 
         empleador u otros.
-      </MessageWarning>
+      </MessageWarning> */}
+      <ContainerTitle>
+      <a href='https://especiales.larepublica.pe/calcular-cts-2022-deposito-en-noviembre-por-la-compensacion-por-tiempo-de-servicios-calculadora/' target='_blank' rel="noreferrer">
+        <Title>
+          CALCULADORA DE LA CTS
+        </Title>
+      </a>
+      </ContainerTitle>
+      <ContainerTitle>
+      <a href='https://especiales.larepublica.pe/calculadora-de-uit-como-saber-cuanto-tengo-que-pagar-peru/' target='_blank' rel="noreferrer">
+        <Title>
+          CALCULADORA DE LA GRATIFICACIÓN
+        </Title>
+      </a>
+      </ContainerTitle>
     </Layout>
   )
 }
@@ -401,6 +438,7 @@ const CaracterSpecial = styled.h3`
   font-size: 18px;
   font-weight: 600;
   font-family: "Merriweather", serif;
+  text-align: center;
 
   @media (max-width: 500px){
     font-size: 17px;
